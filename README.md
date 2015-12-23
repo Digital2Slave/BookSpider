@@ -8,7 +8,7 @@ This repo is created for crawling amazon and douban book's information by Python
 ###Needs
 * [python](https://www.python.org/downloads/)
 * [scrapy](http://doc.scrapy.org/en/latest/)
-* requests
+* [requests](http://www.python-requests.org/en/latest/)
 
 
 
