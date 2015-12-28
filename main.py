@@ -35,8 +35,8 @@ if __name__=='__main__':
 
     # !< connect mongodb
     client    = MongoClient(host=MONGODB_SERVER, port=MONGODB_PORT)
-    data      = client[MONGODB_DB]
-    bookcover = data[MONGODB_COLLECTION]
+    db        = client[MONGODB_DB]
+    bookcover = db[MONGODB_COLLECTION]
 
     # !< run
     cnt = 0
