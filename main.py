@@ -39,8 +39,8 @@ if __name__=='__main__':
     bookcover = db[MONGODB_COLLECTION]
 
     # !< run
-    cnt = 0
-    for isbn in data[335:]:
+    cnt = 559
+    for isbn in data[559:]:
         cnt += 1
         print cnt
         asin  = AmazonIsbn2Asin(isbn)
