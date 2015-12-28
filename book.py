@@ -7,7 +7,7 @@ CopyLeft: OpenSource
 """
 from config import *
 from bookhelper import BookHelper
-from spider import amazon, douban
+from spider import amazon, douban, GetAmazonBookCover
 
 
 """
@@ -33,6 +33,14 @@ class Book(BookHelper):
         if (type(isbn) == str) and (isbn != ''):
             asin       = BookHelper(isbn=isbn).getAmazonAsinByIsbn()
             return amazon.parse(isbn, asin)
+        else:
+            return ''
+
+    def getAmazonBookCoverByIsbn(self):
+        isbn = self.isbn
+        if (type(isbn) == str) and (isbn != ''):
+            asin       = BookHelper(isbn=isbn).getAmazonAsinByIsbn()
+            return GetAmazonBookCover.parse(isbn, asin)
         else:
             return ''
 
