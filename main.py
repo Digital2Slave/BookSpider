@@ -11,7 +11,7 @@ from bookhelper import AmazonIsbn2Asin
 from spider import GetAmazonBookCover
 from collections import OrderedDict
 
-import json
+import json, time
 import pymongo
 from pymongo import MongoClient
 from optparse import OptionParser
@@ -39,13 +39,15 @@ if __name__=='__main__':
     bookcover = db[MONGODB_COLLECTION]
 
     # !< run
-    cnt = 1004
-    for isbn in data[1004:]:
+    cnt = 3445
+    for isbn in data[3445:]:
         cnt += 1
-        print cnt
         asin  = AmazonIsbn2Asin(isbn)
         if (asin != ''):
             bookdict = GetAmazonBookCover.parse(isbn, asin)
             item     = {}
             item['bookinfo'] = bookdict
             bookcover.update({'bookinfo':item['bookinfo']}, item, upsert=True)
+        if (cnt%80==0):
+            time.sleep(3)
+        print cnt
