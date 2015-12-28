@@ -65,10 +65,16 @@ def getSelPagebyUrl(url):
     request_headers = { 'User-Agent': useragentstring }
     request         = Request(url, None, request_headers)
     if (request!=None):
-        req     = urlopen(request, timeout=60)
-        page    = req.read()
-        status  = req.getcode()
-        sel     = Selector(text=page)
+        try:
+            req     = urlopen(request, timeout=60)
+            page    = req.read()
+            status  = req.getcode()
+            sel     = Selector(text=page)
+        except:
+            req    = requests.get(url, headers=request_headers)
+            page   = req.text
+            status = req.status_code
+            sel    = Selector(text=page)
         return sel, page, url, status
     else:
         time.sleep(1)
