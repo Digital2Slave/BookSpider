@@ -12,7 +12,7 @@ from scrapy import Selector
 from urllib2 import urlopen,Request
 from requests.auth import HTTPProxyAuth
 
-import sys, time
+import sys, time, json
 sys.setrecursionlimit(250)
 
 """
@@ -148,7 +148,7 @@ class BookHelper:
         self.author  = author
         self.isbn    = isbn
         self.asin    = asin
-    
+
     def getBookTitle(self):
         return self.title
 
