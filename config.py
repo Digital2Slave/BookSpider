@@ -42,3 +42,9 @@ USER_AGENT = [
 #Proxy
 USER_KEY = os.environ.get('CRAWLERA_USER')
 PROXY_HOST = "proxy.crawlera.com"
+
+#MongoDB
+MONGODB_SERVER = '192.168.100.3'
+MONGODB_PORT = 27019
+MONGODB_DB = '17wan'
+MONGODB_COLLECTION = 'book'
