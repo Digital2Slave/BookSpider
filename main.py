@@ -19,14 +19,14 @@ from optparse import OptionParser
 if __name__=='__main__':
     '''
     Usage :
-    $ python <name>.py --isbn=<isbnspath>
+    $ python <name>.py --input=<isbnspath>
     eg:
-    $ python main.py --isbn='./file/data/isbns_0.json'
+    $ python main.py --input='./file/data/isbns_21.json'
     '''
     parser = OptionParser()
-    parser.add_option("-i", "--isbn", action="store", dest="isbnData", help="Load isbn file.")
+    parser.add_option("-i", "--input", action="store", dest="isbnData", help="Load isbn file.")
     (options,args) = parser.parse_args()
-    filename       = options["isbn"]
+    filename       = options.isbnData
 
     # !< load data
     with open(filename, 'rb') as fi:
