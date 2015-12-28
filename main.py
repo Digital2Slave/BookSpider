@@ -7,8 +7,8 @@ Version : 0.01
 CopyLeft: OpenSource
 """
 from config import *
-from book import Book
-from bookhelper import BookHelper
+from bookhelper import AmazonIsbn2Asin
+from spider import GetAmazonBookCover
 from collections import OrderedDict
 
 import json
@@ -42,11 +42,10 @@ if __name__=='__main__':
     cnt = 0
     for isbn in data:
         cnt += 1
-	print cnt, '-->', isbn
-
-	book     = Book(isbn=isbn)
-        bookdict = book.getAmazonBookCoverByIsbn()
-
-        item     = {}
-        item['bookinfo'] = bookdict
-        bookcover.update({'bookinfo':item['bookinfo']}, item, upsert=True)
+        print cnt
+        asin  = AmazonIsbn2Asin(isbn)
+        if (asin != ''):
+            bookdict = GetAmazonBookCover.parse(isbn, asin)
+            item     = {}
+            item['bookinfo'] = bookdict
+            bookcover.update({'bookinfo':item['bookinfo']}, item, upsert=True)
