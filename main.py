@@ -41,12 +41,12 @@ if __name__=='__main__':
     # !< run
     cnt = 0
     for isbn in data:
-        book     = Book(isbn=isbn)
+        cnt += 1
+	print cnt, '-->', isbn
+
+	book     = Book(isbn=isbn)
         bookdict = book.getAmazonBookCoverByIsbn()
 
         item     = {}
         item['bookinfo'] = bookdict
         bookcover.update({'bookinfo':item['bookinfo']}, item, upsert=True)
-
-        cnt += 1
-        print cnt
