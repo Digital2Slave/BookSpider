@@ -58,7 +58,9 @@ def parse(isbn, asin):
             endindex = tmpimgurl.find(stringval)
             imgurl = tmpimgurl[11:endindex]
         else:
-            imgurl = tmpimgurl
+            imgurl = tmpimgurl[11:]
+            if (imgurl[-1]=='"'):
+                imgurl = imgurl[:-1]
 
     elif(kimgurls != []):# be sure large in imgurls
         tmpimgurl = kimgurls[0]
@@ -67,7 +69,9 @@ def parse(isbn, asin):
             endindex = tmpimgurl.find(stringval)
             imgurl = tmpimgurl[9:endindex]
         else:
-            imgurl = tmpimgurl
+            imgurl = tmpimgurl[9:]
+            if (imgurl[-1]=='"'):
+                imgurl = imgurl[:-1]
     else:
         #raise ("Not cover!")
         imgurl = ''
