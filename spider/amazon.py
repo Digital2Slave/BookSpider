@@ -180,6 +180,22 @@ def parse(isbn, asin):
         infotitlelist.append(infotitle)
 
         #infotitlevalue
+        # !< one
+        tmpinfov = checkXpathResult(tree.xpath('div').extract())
+        tmpinfovres = str()
+        for v in tmpinfov:
+            v = v.strip().encode('utf-8')
+            tmpinfovres += v
+        if ('<divclass="bbeditor">' in tmpinfovres):
+            tmpinfovres = tmpinfovres.replace('<divclass="bbeditor">', '')
+        if ('<br>' in tmpinfovres):
+            tmpinfovres = tmpinfovres.replace('<br>', '')
+        if ('<div>' in tmpinfovres):
+            tmpinfovres = tmpinfovres.replace('<div>', '')
+        if ('</div>' in tmpinfovres):
+            tmpinfovres = tmpinfovres.replace('</div>', '')
+
+        # !< two
         infotitlevalue = checkXpathResult(tree.xpath('p').extract())
         infotitlevalue = infotitlevalue.strip().encode('utf-8')
         if ('<p>' in infotitlevalue) or ('</p>' in infotitlevalue):
@@ -187,7 +203,11 @@ def parse(isbn, asin):
             infotitlevalue = infotitlevalue.replace('</p>','')
         if ('<br>' in infotitlevalue):
             infotitlevalue = infotitlevalue.replace('<br>','')
-        infotitlevaluelist.append(infotitlevalue)
+
+        # !< three
+        res = infotitlevalue + ' ' + tmpinfovres
+        infotitlevaluelist.append(res)
+
     #(k,v)
     if (infotitlelist != []) and (infotitlevaluelist != []):
         lenth = len(infotitlelist)
