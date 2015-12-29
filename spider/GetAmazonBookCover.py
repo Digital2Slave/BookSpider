@@ -19,13 +19,20 @@ def checkXpathResult(rlist):
     else:
         return []
 
+# def SelPage(url):
+#     sel, page, bookurl, urlstate = getSelPagebyUrl(url)
+#     #!< 书籍封面确认程序
+#     r = sel.xpath('//div[@id="img-canvas"]/img/@src').extract()
+#     r = checkXpathResult(r)
+#     if (r!=[]) and (r[-3:]=='gif' or r[-3:]=='jpg') : # 确认无封面'gif', 确认有封面'jpg'
+#         return sel, page, url, urlstate
+#     else:
+#         SelPage(url)
+
 def parse(isbn, asin):
     #!!< bookurl !!!
     url = 'http://www.amazon.cn/dp/' + asin
     sel, page, bookurl, urlstate = getSelPagebyUrl(url)
-
-    if (urlstate<200) or (urlstate>=400):
-        return {'url':bookurl, 'isbn':isbn, 'asin':asin}
 
     #!!< 书籍信息字典 !!!
     orderdict = OrderedDict()
@@ -52,7 +59,9 @@ def parse(isbn, asin):
             endindex = tmpimgurl.find(stringval)
             imgurl = tmpimgurl[11:endindex]
         else:
-            imgurl = tmpimgurl
+            imgurl = tmpimgurl[11:]
+            if (imgurl[-1]=='"'):
+                imgurl = imgurl[:-1]
 
     elif(kimgurls != []):# be sure large in imgurls
         tmpimgurl = kimgurls[0]
@@ -61,7 +70,9 @@ def parse(isbn, asin):
             endindex = tmpimgurl.find(stringval)
             imgurl = tmpimgurl[9:endindex]
         else:
-            imgurl = tmpimgurl
+            imgurl = tmpimgurl[9:]
+            if (imgurl[-1]=='"'):
+                imgurl = imgurl[:-1]
     else:
         #raise ("Not cover!")
         imgurl = ''
