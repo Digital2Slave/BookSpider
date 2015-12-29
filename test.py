@@ -150,10 +150,10 @@ if (__name__=='__main__'):
     book3 = Book(title=title, author=author, isbn=None, asin=None, subjectid=None)
 
     #Book Douban
-    isbn4 = '9787549571413'
+    isbn4     = '9787549571413'
     subjectid = '26598484'
-    book4 = Book(title=None, author=None, isbn=isbn4, asin=None, subjectid=None)
-    book5 = Book(title=None, author=None, isbn=None, asin=None, subjectid=subjectid)
+    book4     = Book(title=None, author=None, isbn=isbn4, asin=None, subjectid=None)
+    book5     = Book(title=None, author=None, isbn=None, asin=None, subjectid=subjectid)
 
     test4(book1)
     test5(book2)
