@@ -46,13 +46,22 @@ def parse(isbn, asin):
 
     imgurl = str()
     if (imgurls != []):# be sure mainUrl in imgurls
-        #imgurl = imgurls[0]
-        endindex = imgurls[0].find('''","dimensions"''')
-        imgurl = imgurls[0][11:endindex]
+        tmpimgurl = imgurls[0]
+        stringval = '''","dimensions"'''
+        if (stringval in tmpimgurl):
+            endindex = tmpimgurl.find(stringval)
+            imgurl = tmpimgurl[11:endindex]
+        else:
+            imgurl = tmpimgurl
 
     elif(kimgurls != []):# be sure large in imgurls
-        endindex = kimgurls[0].find('''","variant"''')
-        imgurl = kimgurls[0][9:endindex]
+        tmpimgurl = kimgurls[0]
+        stringval = '''","variant"'''
+        if (stringval in tmpimgurl):
+            endindex = tmpimgurl.find(stringval)
+            imgurl = tmpimgurl[9:endindex]
+        else:
+            imgurl = tmpimgurl
     else:
         #raise ("Not cover!")
         imgurl = ''
