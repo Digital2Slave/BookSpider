@@ -6,7 +6,7 @@ Version : 0.01
 CopyLeft: OpenSource
 """
 import os
-# 
+#
 # #User-Agent maybe a json file or list of user_agent_string
 # USER_AGENT = [
 #         'Mozilla/40.0.3 (Macintosh; Intel Mac OS X 10_10_4)',\
@@ -45,6 +45,7 @@ PROXY_HOST = "proxy.crawlera.com"
 
 #MongoDB
 MONGODB_SERVER = 'szp1.yueduapi.com'
+#MONGODB_SERVER = 'localhost'
 MONGODB_PORT = 27017
 MONGODB_DB = '17Mbook'
 MONGODB_COLLECTION = 'book'
