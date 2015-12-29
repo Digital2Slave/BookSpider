@@ -44,7 +44,7 @@ USER_KEY = os.environ.get('CRAWLERA_USER')
 PROXY_HOST = "proxy.crawlera.com"
 
 #MongoDB
-MONGODB_SERVER = 'szp1.yueduapi.com'
+MONGODB_SERVER = os.environ.get('FUKKEY')
 #MONGODB_SERVER = 'localhost'
 MONGODB_PORT = 27017
 MONGODB_DB = '17Mbook'
