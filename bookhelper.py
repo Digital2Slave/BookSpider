@@ -7,7 +7,7 @@ Version : 0.01
 CopyLeft: OpenSource
 """
 from config import *
-import random, requests, re
+import random, requests, re, socket
 from scrapy import Selector
 from urllib2 import urlopen,Request
 from requests.auth import HTTPProxyAuth
@@ -60,6 +60,26 @@ def getSelPagebyUrlProxy(url):
 """
     Get url's sel, page, url, request status by useragent.
 """
+def getSelPagebyUrlReq(url, request_headers):
+    #!< obtain texturl from response.read()
+    try:
+        req = requests.get(url, headers=request_headers)
+    except requests.RequestException:
+        time.sleep(1)
+        return getSelPagebyUrlReq(url, request_headers)
+    except requests.exceptions:
+        time.sleep(1)
+        return getSelPagebyUrlReq(url, request_headers)
+    except socket.error:
+        time.sleep(3)
+        return getSelPagebyUrlReq(url, request_headers)
+    else:
+        page   = req.text
+        status = req.status_code
+        sel    = Selector(text=page)
+    finally:
+        return  sel, page, url, status
+
 def getSelPagebyUrl(url):
     useragentstring = getUserAgentString(useragent=USER_AGENT)
     request_headers = { 'User-Agent': useragentstring }
@@ -71,11 +91,9 @@ def getSelPagebyUrl(url):
             status  = req.getcode()
             sel     = Selector(text=page)
         except:
-            req    = requests.get(url, headers=request_headers)
-            page   = req.text
-            status = req.status_code
-            sel    = Selector(text=page)
-        return sel, page, url, status
+            sel, page, url, status = getSelPagebyUrlReq(url, request_headers)
+        finally:
+            return  sel, page, url, status
     else:
         time.sleep(1)
         return getSelPagebyUrl(url)
