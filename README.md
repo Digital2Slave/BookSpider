@@ -1,18 +1,20 @@
-##Book Spider 
+## Book Spider 
 
 
-###overview
+### Overview
 This repo is created for crawling amazon and douban book's information by Python language.
 
 
-###Needs
+### Needs
+
 * [python](https://www.python.org/downloads/)
 * [scrapy](http://doc.scrapy.org/en/latest/)
 * [requests](http://www.python-requests.org/en/latest/)
 
 
 
-###BookHelper
+### BookHelper
+
 In **BookHelper** class some basic methods are programed, like:
 
 ```
@@ -23,7 +25,7 @@ In **BookHelper** class some basic methods are programed, like:
 ```
 
 
-###Book
+### Book
 In **Book** class some basic methods are programed, like:
 
 
@@ -35,12 +37,12 @@ In **Book** class some basic methods are programed, like:
 
 ```
 
-###Result
+### Result
 
 ![book](./book.png)
 
 
-###Notethat
+### Notethat
 
 *  '.UserAgentString.json'文件里面包含有**9502**个[PC浏览器](http://www.useragentstring.com/pages/Browserlist/)代理信息和**512**个[Mobile浏览器](http://www.useragentstring.com/pages/Mobile%20Browserlist/)代理信息。
 * 默认不启用[Crawlera](http://scrapinghub.com/crawlera/)Proxy服务, 需要自己设置 CRAWLERA_USER 的值。(具体如何设置CRAWLERA_USER，请参考官网)
